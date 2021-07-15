@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -19,9 +20,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.task.user.databinding.FragmentAddBinding;
+import com.task.user.model.OnTransactionCallback;
 import com.task.user.model.User;
 import com.task.user.util.Uri2PathUtil;
 
+import java.io.File;
 import java.util.Calendar;
 
 import static androidx.navigation.fragment.NavHostFragment.findNavController;
@@ -31,7 +34,7 @@ public class AddFragment extends Fragment {
     private SharedViewModel viewModel;
     private FragmentAddBinding binding;
 
-    private String profile;
+    private String profile = "";
 
     ActivityResultLauncher<Intent> startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -41,7 +44,8 @@ public class AddFragment extends Fragment {
                         if (intent.getData() != null) {
                             profile = Uri2PathUtil.getRealPathFromUri(requireContext(), intent.getData());
                             Log.e("Path :", profile);
-                            Glide.with(requireContext()).load(profile).into(binding.ivProfile);
+                            File file = new File(profile);
+                            Glide.with(requireContext()).load(file).into(binding.ivProfile);
                         }
                     }
                 }
@@ -53,7 +57,6 @@ public class AddFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         binding = FragmentAddBinding.inflate(getLayoutInflater());
-        binding.setFragment(this);
         return binding.getRoot();
     }
 
@@ -63,14 +66,11 @@ public class AddFragment extends Fragment {
 
         viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
-        binding.executePendingBindings();
         initView();
     }
 
     private void initView() {
-        viewModel.getUsers().observe(getViewLifecycleOwner(), users -> {
-            Log.e("User size :", users.size() + "");
-        });
+        binding.setFragment(this);
     }
 
     private String getName() {
@@ -103,18 +103,25 @@ public class AddFragment extends Fragment {
 
     public void addUser() {
         if (isValid()) {
-            User user = viewModel.saveUser(
+            viewModel.saveUser(
                     new User(
                             getName(),
                             getEmail(),
                             getPhone(),
                             getGender(),
                             getProfile(),
-                            Calendar.getInstance().getTime().toString())
+                            Calendar.getInstance().getTimeInMillis()),
+                    new OnTransactionCallback() {
+                        @Override
+                        public void onRealmSuccess() {
+                            navigateUp();
+                        }
+
+                        @Override
+                        public void onRealmError() {
+                        }
+                    }
             );
-            if (user != null) {
-                Log.e("User :", user.toString());
-            }
         }
     }
 
@@ -131,8 +138,11 @@ public class AddFragment extends Fragment {
         } else if (getPhone().isEmpty()) {
             binding.etPhone.setError("Phone required");
             return false;
+        } else if (getPhone().length() < 10) {
+            binding.etPhone.setError("Invalid phone number");
+            return false;
         } else if (getProfile().isEmpty()) {
-            binding.etPhone.setError("Profile image required");
+            Toast.makeText(requireContext(), "Profile image required", Toast.LENGTH_SHORT).show();
             return false;
         } else {
             return true;

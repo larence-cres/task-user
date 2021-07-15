@@ -13,9 +13,7 @@ public class MyApplication extends Application {
 
         // REALM
         Realm.init(this);
-        RealmConfiguration config = new RealmConfiguration.Builder()
-                .allowWritesOnUiThread(false)
-                .build();
+        RealmConfiguration config = new RealmConfiguration.Builder().build();
         Realm.setDefaultConfiguration(config);
     }
 

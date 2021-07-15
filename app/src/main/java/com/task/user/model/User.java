@@ -19,13 +19,13 @@ public class User extends RealmObject {
     @Required
     private String profile;
     @Required
-    private String createdAt;
+    private Long createdAt;
 
-    public User(){
+    public User() {
 
     }
 
-    public User(String name, String email, String phone, String gender, String profile, String createdAt) {
+    public User(String name, String email, String phone, String gender, String profile, Long createdAt) {
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -82,11 +82,11 @@ public class User extends RealmObject {
         this.profile = profile;
     }
 
-    public String getCreatedAt() {
+    public Long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Long createdAt) {
         this.createdAt = createdAt;
     }
 

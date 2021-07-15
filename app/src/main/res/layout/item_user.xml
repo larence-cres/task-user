@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.task.user.R" />
+
+        <variable
+            name="format"
+            type="String" />
+
+        <variable
+            name="user"
+            type="com.task.user.model.User" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@{user.gender.equals(`Male`) ? @color/male : @color/female}">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivProfile"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="8dp"
+            android:padding="2dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/roundedImageView"
+            app:strokeColor="@color/black"
+            app:strokeWidth="0.5dp" />
+
+        <TextView
+            android:id="@+id/tvName"
+            style="@style/ItemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@{user.name}"
+            app:layout_constraintStart_toEndOf="@+id/ivProfile"
+            app:layout_constraintTop_toTopOf="@id/ivProfile"
+            tools:text="Name" />
+
+        <com.task.user.custom.PrettyDateView
+            android:id="@+id/tvDate"
+            style="@style/ItemSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            app:date="@{Long.toString(user.createdAt)}"
+            app:drawableStartCompat="@drawable/ic_baseline_visibility_24"
+            app:drawableTint="@color/purple_200"
+            app:format="@{format}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivProfile"
+            tools:text="Date" />
+
+        <TextView
+            android:id="@+id/tvEmail"
+            style="@style/ItemSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            android:text="@{user.email}"
+            app:drawableStartCompat="@drawable/ic_baseline_email_24"
+            app:drawableTint="@color/purple_200"
+            app:layout_constraintStart_toEndOf="@+id/ivProfile"
+            app:layout_constraintTop_toBottomOf="@id/tvName"
+            tools:text="Email" />
+
+        <TextView
+            android:id="@+id/tvPhone"
+            style="@style/ItemSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            android:text="@{user.phone}"
+            app:drawableStartCompat="@drawable/ic_baseline_phone_24"
+            app:drawableTint="@color/purple_200"
+            app:layout_constraintStart_toEndOf="@+id/ivProfile"
+            app:layout_constraintTop_toBottomOf="@id/tvEmail"
+            tools:text="Phone" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="6dp"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPhone" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

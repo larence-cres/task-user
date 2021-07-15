@@ -3,11 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/addFragment">
+    app:startDestination="@id/usersFragment">
+
+    <fragment
+        android:id="@+id/usersFragment"
+        android:name="com.task.user.ui.fragment.UsersFragment"
+        android:label="UsersFragment"
+        tools:layout="@layout/fragment_users">
+        <action
+            android:id="@+id/action_usersFragment_to_addFragment"
+            app:destination="@id/addFragment"
+            app:popUpTo="@id/usersFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
 
     <fragment
         android:id="@+id/addFragment"
         android:name="com.task.user.ui.fragment.AddFragment"
         android:label="AddFragment"
         tools:layout="@layout/fragment_add" />
+
 </navigation>
