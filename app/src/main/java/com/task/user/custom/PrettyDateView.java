@@ -28,12 +28,16 @@ public class PrettyDateView extends AppCompatTextView {
 
     @BindingAdapter({"bind:date", "bind:format"})
     @JvmStatic
-    public static void setDateFormat(AppCompatTextView textView, String date, String format) {
+    public static void setFormattedDate(AppCompatTextView textView, String date, String format) {
         try {
             textView.setText(parseDateTimeFromFormat(Long.parseLong(date), format));
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setDateFormat(String date, String format) {
+        setFormattedDate(this, date, format);
     }
 
     private static String parseDateTimeFromFormat(long millis, String format) {

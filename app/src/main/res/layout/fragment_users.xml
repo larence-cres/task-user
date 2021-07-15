@@ -20,6 +20,10 @@
             type="String" />
 
         <variable
+            name="format"
+            type="String" />
+
+        <variable
             name="fragment"
             type="com.task.user.ui.fragment.UsersFragment" />
     </data>
@@ -110,11 +114,24 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:srcCompat="@drawable/ic_baseline_add_24" />
+
+            <View
+                android:id="@+id/dimLayer"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                android:onClick="@{()-> fragment.collapseBottomSheet()}"
+                android:background="@color/black_20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/appbar" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <include
             android:id="@+id/bottomSheet"
             layout="@layout/filter_bottom_sheet"
+            app:format="@{format}"
             app:fragment="@{fragment}"
             app:from="@{from}"
             app:to="@{to}" />

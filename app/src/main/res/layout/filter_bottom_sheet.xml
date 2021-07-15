@@ -14,6 +14,10 @@
             type="String" />
 
         <variable
+            name="format"
+            type="String" />
+
+        <variable
             name="fragment"
             type="com.task.user.ui.fragment.UsersFragment" />
     </data>
@@ -45,6 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:onClick="@{() -> fragment.filterData(``, ``)}"
             android:text="Reset"
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,6 +60,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:onClick="@{() -> fragment.showDatePickerDialog(true)}"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnReset">
@@ -69,12 +75,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <com.task.user.custom.PrettyDateView
                 android:id="@+id/tvFrom"
                 style="@style/SubTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
+                app:date="@{from}"
+                app:format="@{format}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/from"
                 tools:text="2021/7/14" />
@@ -113,6 +121,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:onClick="@{() -> fragment.showDatePickerDialog(false)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/btnReset">
@@ -127,12 +136,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <com.task.user.custom.PrettyDateView
                 android:id="@+id/tvTo"
                 style="@style/SubTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
+                app:date="@{to}"
+                app:format="@{format}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/to"
                 tools:text="2021/7/14" />
@@ -165,6 +176,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:onClick="@{() -> fragment.filterData(from, to)}"
             android:text="Apply"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"

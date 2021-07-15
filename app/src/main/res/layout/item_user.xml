@@ -54,7 +54,7 @@
             android:layout_margin="8dp"
             android:drawablePadding="4dp"
             android:gravity="center"
-            app:date="@{Long.toString(user.createdAt)}"
+            app:date="@{user.createdAt.toString()}"
             app:drawableStartCompat="@drawable/ic_baseline_visibility_24"
             app:drawableTint="@color/purple_200"
             app:format="@{format}"
