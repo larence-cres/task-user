@@ -1,5 +1,7 @@
 package com.task.user.model;
 
+import org.jetbrains.annotations.NotNull;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
@@ -22,7 +24,6 @@ public class User extends RealmObject {
     private Long createdAt;
 
     public User() {
-
     }
 
     public User(String name, String email, String phone, String gender, String profile, Long createdAt) {
@@ -90,6 +91,7 @@ public class User extends RealmObject {
         this.createdAt = createdAt;
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "User{" +

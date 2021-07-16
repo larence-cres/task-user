@@ -20,9 +20,7 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         ActivityCompat.requestPermissions(
-                this,
-                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                1
+                this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1
         );
     }
 

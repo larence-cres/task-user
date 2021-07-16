@@ -18,13 +18,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary true
     }
-    buildFeatures{
-        dataBinding = true // for data binding
-        viewBinding = true // for view binding
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
     }
-//    dataBinding {
-//        enabled = true
-//    }
     buildTypes {
         release {
             minifyEnabled false
@@ -34,13 +31,6 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
-    splits {
-        abi {
-            enable true
-            reset()
-            include 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
-        }
     }
 }
 
@@ -55,7 +45,6 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.lifecycle:lifecycle-livedata:2.3.1"
     implementation 'androidx.lifecycle:lifecycle-viewmodel:2.3.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
     // Material Design

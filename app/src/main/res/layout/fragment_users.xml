@@ -78,7 +78,8 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/ic_baseline_filter_list_24"
-                        app:tint="@color/white" />
+                        app:tint="@color/white"
+                        android:contentDescription="@string/image_button" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -97,7 +98,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
-                android:text="No users available"
+                android:text="@string/no_users_available"
                 android:textColor="@color/black"
                 android:visibility="@{size == 0 ? View.VISIBLE : View.GONE}"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -110,6 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:contentDescription="@string/fab"
                 android:onClick="@{() -> fragment.navigateToAdd()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -119,9 +121,9 @@
                 android:id="@+id/dimLayer"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:visibility="gone"
-                android:onClick="@{()-> fragment.collapseBottomSheet()}"
                 android:background="@color/black_20"
+                android:onClick="@{()-> fragment.collapseBottomSheet()}"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

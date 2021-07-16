@@ -6,7 +6,7 @@ import io.realm.Realm;
 
 public class RealmUtil {
 
-    public static Integer nextId(Realm realm, Class realmObject) {
+    public static Integer nextId(Realm realm, @SuppressWarnings("rawtypes") Class realmObject) {
         int id;
         try {
             id = Objects.requireNonNull(realm.where(realmObject).max("id")).intValue() + 1;

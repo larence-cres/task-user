@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +14,12 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+import com.task.user.R;
 import com.task.user.databinding.FragmentAddBinding;
 import com.task.user.model.OnTransactionCallback;
 import com.task.user.model.User;
@@ -36,14 +37,13 @@ public class AddFragment extends Fragment {
 
     private String profile = "";
 
-    ActivityResultLauncher<Intent> startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+    final ActivityResultLauncher<Intent> startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent intent = result.getData();
                     if (intent != null) {
                         if (intent.getData() != null) {
                             profile = Uri2PathUtil.getRealPathFromUri(requireContext(), intent.getData());
-                            Log.e("Path :", profile);
                             File file = new File(profile);
                             Glide.with(requireContext()).load(file).into(binding.ivProfile);
                         }
@@ -56,7 +56,7 @@ public class AddFragment extends Fragment {
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        binding = FragmentAddBinding.inflate(getLayoutInflater());
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add, null, false, DataBindingUtil.getDefaultComponent());
         return binding.getRoot();
     }
 
@@ -119,6 +119,7 @@ public class AddFragment extends Fragment {
 
                         @Override
                         public void onRealmError() {
+                            Toast.makeText(requireContext(), "Error while creating user", Toast.LENGTH_SHORT).show();
                         }
                     }
             );

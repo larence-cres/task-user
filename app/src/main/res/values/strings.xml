@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">User Task</string>
+
+    <string name="fab">FAB</string>
+    <string name="image_view">ImageView</string>
+    <string name="image_button">ImageButton</string>
+
+    <string name="name">Name</string>
+    <string name="date">Date</string>
+    <string name="male">Male</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="gender">Gender</string>
+    <string name="female">Female</string>
+
+    <string name="to">To</string>
+    <string name="from">From</string>
+
+    <string name="reset">Reset</string>
+    <string name="apply">Apply</string>
+    <string name="add_user">Add User</string>
+
+    <string name="date_format_ymd">yyyy/MM/dd</string>
+    <string name="date_format_mdyhm">MMM dd, YYYY hh:mm a</string>
+
+    <string name="no_users_available">No users available</string>
 </resources>

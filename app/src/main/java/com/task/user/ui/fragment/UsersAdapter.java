@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.task.user.R;
 import com.task.user.databinding.ItemUserBinding;
 import com.task.user.model.User;
 
@@ -53,7 +54,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 
         public void bind(User user, Context context) {
             binding.setUser(user);
-            binding.setFormat("MMM dd, YYYY hh:mm a");
+            binding.setFormat(context.getString(R.string.date_format_mdyhm));
             Glide.with(context).load(new File(user.getProfile())).into(binding.ivProfile);
             binding.executePendingBindings();
         }

@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:onClick="@{() -> fragment.filterData(``, ``)}"
-            android:text="Reset"
+            android:text="@string/reset"
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view" />
@@ -71,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:text="From"
+                android:text="@string/from"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -92,6 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
+                android:contentDescription="@string/image_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/from"
                 app:srcCompat="@drawable/ic_baseline_calendar_today_24"
@@ -132,7 +133,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:text="To"
+                android:text="@string/to"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -153,6 +154,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
+                android:contentDescription="@string/image_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/to"
                 app:srcCompat="@drawable/ic_baseline_calendar_today_24"
@@ -177,7 +179,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:onClick="@{() -> fragment.filterData(from, to)}"
-            android:text="Apply"
+            android:text="@string/apply"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

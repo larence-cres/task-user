@@ -39,6 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:background="?android:selectableItemBackground"
+                    android:contentDescription="@string/image_button"
                     android:onClick="@{() -> fragment.navigateUp()}"
                     android:padding="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -52,7 +53,7 @@
                     style="@style/Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add User"
+                    android:text="@string/add_user"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/ivBack"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -94,7 +95,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
-                    android:hint="Name"
+                    android:hint="@string/name"
                     android:textColorHint="@color/black"
                     app:boxStrokeColor="@color/black"
                     app:errorEnabled="true"
@@ -106,7 +107,7 @@
                         style="@style/EditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName|textCapWords" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -114,7 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:hint="Email"
+                    android:hint="@string/email"
                     android:textColorHint="@color/black"
                     app:boxStrokeColor="@color/black"
                     app:errorEnabled="true"
@@ -134,7 +135,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:hint="Phone"
+                    android:hint="@string/phone"
                     android:textColorHint="@color/black"
                     app:boxStrokeColor="@color/black"
                     app:errorEnabled="true"
@@ -154,7 +155,7 @@
                     style="@style/EditText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gender" />
+                    android:text="@string/gender" />
 
                 <RadioGroup
                     android:layout_width="wrap_content"
@@ -169,14 +170,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="Male" />
+                        android:text="@string/male" />
 
                     <RadioButton
                         android:id="@+id/rbFemale"
                         style="@style/EditText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Female" />
+                        android:text="@string/female" />
                 </RadioGroup>
 
                 <com.google.android.material.button.MaterialButton
@@ -186,7 +187,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:onClick="@{() -> fragment.addUser()}"
-                    android:text="Add User"
+                    android:text="@string/add_user"
                     android:textColor="@color/white" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

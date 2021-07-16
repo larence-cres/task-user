@@ -2,7 +2,6 @@ package com.task.user.ui.fragment;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,17 +35,15 @@ public class UsersFragment extends Fragment {
     private UsersAdapter adapter;
     private ArrayList<User> users;
 
-    private Calendar calendar;
-    private Long fromDate;
     private Long toDate;
-    private final String format = "yyyy/MM/dd";
+    private Long fromDate;
+    private Calendar calendar;
 
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-//        binding = FragmentUsersBinding.inflate(getLayoutInflater());
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_users, null, false, DataBindingUtil.getDefaultComponent());
         return binding.getRoot();
     }
@@ -68,7 +65,7 @@ public class UsersFragment extends Fragment {
         binding.setFragment(this);
         binding.setFrom(String.valueOf(fromDate));
         binding.setTo(String.valueOf(toDate));
-        binding.setFormat(format);
+        binding.setFormat(getString(R.string.date_format_ymd));
         initRecyclerView();
         getUsers();
 
@@ -112,37 +109,32 @@ public class UsersFragment extends Fragment {
         DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
                 (view, year, monthOfYear, dayOfMonth) -> {
                     final Calendar c = Calendar.getInstance();
-                    Log.e("isFrom :", isFrom.toString());
                     if (isFrom) {
                         c.set(year, monthOfYear, dayOfMonth, 0, 0);
                         fromDate = c.getTimeInMillis();
                         binding.setFrom(fromDate.toString());
-//                        binding.bottomSheet.tvFrom.setDateFormat(fromDate.toString(), format);
                     } else {
                         c.set(year, monthOfYear, dayOfMonth, 23, 59);
                         toDate = c.getTimeInMillis();
                         binding.setTo(toDate.toString());
-//                        binding.bottomSheet.tvTo.setDateFormat(toDate.toString(), format);
                     }
                 }, mYear, mMonth, mDay);
         datePickerDialog.show();
     }
 
     public void filterData(String from, String to) {
+        ArrayList<User> filteredUser = new ArrayList<>();
         initRecyclerView();
         if (from.isEmpty() && to.isEmpty()) {
-            adapter.setUsers(users, requireContext());
-            binding.setSize(users.size());
+            filteredUser = users;
         } else {
-            ArrayList<User> filteredUser = new ArrayList<>();
             for (User user : users) {
-                if (user.getCreatedAt() > Long.parseLong(from) && user.getCreatedAt() < Long.parseLong(to)) {
+                if (user.getCreatedAt() > Long.parseLong(from) && user.getCreatedAt() < Long.parseLong(to))
                     filteredUser.add(user);
-                }
             }
-            adapter.setUsers(filteredUser, requireContext());
-            binding.setSize(filteredUser.size());
         }
+        adapter.setUsers(filteredUser, requireContext());
+        binding.setSize(filteredUser.size());
         adapter.notifyDataSetChanged();
         collapseBottomSheet();
     }
