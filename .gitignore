@@ -1,6 +1,6 @@
 ### Android ###
 # Built application files
-*.apk
+#*.apk
 *.aar
 *.ap_
 *.aab
